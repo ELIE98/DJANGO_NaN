@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="fr-FR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %} ">-->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Limelight" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static "css/navbar.scss" %}">
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/navbar.js" %}"></script>
+    <title>{{title}}</title>
+    <style>
+    header
+{
+  background: #17202A;
+  border-radius: 7px;
+  position: fixed top;
+  opacity: 0.8;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 2px;
+  box-shadow: 0 0 15px 15px;
+
+}
+header .logo_header
+{
+  border-radius: 100%;
+
+  width: 120px;
+  height: 120px;
+  margin-left: 15px;
+  border: 2px solid black;
+}
+header #nav
+{
+  width: 500px;
+  float: right;
+ /* border: 1px solid black;*/
+  margin-top: 30px;
+
+}
+header #nav ul li
+{
+  display: inline-block;
+  list-style: none;
+  text-decoration: none;
+  margin-left: 7px;
+
+}
+header a
+{
+  text-decoration: none;
+  color: white;
+  font-family: 'Limelight',sans-serif,Arial;
+}
+header a:hover
+{
+  color: white;
+  text-decoration: none;
+  opacity: 0.8;
+}
+    </style>
+</head>
+<body>
+  <header>
+      <a href="#"> <img class="logo_header" src="{% static 'images/logo-3.jpg'%}"></a>
+        <div id="nav">
+            <nav>
+                <ul>
+                    <li><a href="#" class="btn btn-warning" style="color:white;"><span class="glyphicon glyphicon-pencil"></span> ABOUT</a></li>
+                    {% if user.is_authenticated %}
+                    <li style="display:none;"><a href="{% url 'login'%}" class="btn btn-primary" ><span class="fa fa-body"></span> LOGIN</a></li>
+                    {% else %}
+                    <li ><a href="{% url 'login'%}" class="btn btn-success" ><span class="fa fa-body"></span> LOGIN</a></li>
+                    {% endif %}
+                    {% if user.is_authenticated%}
+                    <li><a href="{% url 'logout'%}" class="btn btn-danger"><span class="fa fa-body"></span> LOGOUT</a></li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <li style="display:none;"><a href="{% url 'register'%}"class="btn btn-success" target="_blank"><span class="fa fa-body"></span> SIGN UP</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div>
+        {%if messages %}
+            {% for message in messages  %}
+                <div class="alert alert-success" > {{message}} </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+
+
+    {% block content%}
+
+
+    {%endblock%}
+    <footer class="page-footer font-small stylish-color-dark pt-4 bg-dark " style="color:white;height:360px;">
+
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-4 mx-auto">
+
+        <!-- Content -->
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">A PROPOS DE NOUS</h5>
+        <p>
+          Nous sommes une federation qui dans le cadre de la promotion des jeux de strategies et
+          tactiques au combat avons decides de mettre en place un cadre agreable de jeux et de pari sportif
+        </p>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-2 mx-auto">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">LOCALISATION</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">Modeste Route de Bassam</a>
+          </li>
+          <li>
+            <a href="#!">Plage ALERIA</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-2 mx-auto">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">FEDERATION</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">FIP</a>
+          </li>
+          <li>
+            <a href="#!">NaN</a>
+          </li>
+
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-2 mx-auto">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">ALIAS</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">Pegasus</a>
+          </li>
+          <li>
+            <a href="#!">Black</a>
+          </li>
+
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <hr>
+
+  <!-- Call to action -->
+  <ul class="list-unstyled list-inline text-center py-2">
+    <li class="list-inline-item">
+      <h5 class="mb-1">sign up</h5>
+    </li>
+    <li class="list-inline-item">
+      <a href="{% url 'register' %}" class="btn btn-danger btn-rounded">inscrivez-vous</a>
+    </li>
+  </ul>
+  <!-- Call to action -->
+
+  <hr>
+
+  <!-- Social buttons -->
+  <ul class="list-unstyled list-inline text-center">
+    <li class="list-inline-item">
+      <a class="btn-floating btn-fb mx-1">
+        <i class="fab fa-facebook-f"> </i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a class="btn-floating btn-tw mx-1">
+        <i class="fab fa-twitter"> </i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a class="btn-floating btn-gplus mx-1">
+        <i class="fab fa-google-plus-g"> </i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a class="btn-floating btn-li mx-1">
+        <i class="fab fa-linkedin-in"> </i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a class="btn-floating btn-dribbble mx-1">
+        <i class="fab fa-dribbble"> </i>
+      </a>
+    </li>
+  </ul>
+  <!-- Social buttons -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2018 Copyright:
+    <a href="{% url 'register' %}">Pegasus.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+
+
+</body>
+</html>
